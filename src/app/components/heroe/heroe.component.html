@@ -1,3 +1,53 @@
-<p>
-  heroe works!
-</p>
+<div class="container">
+	<h1>Heroe</h1>
+	<button type="button" 
+			class="btn btn-outline-danger"
+			[routerLink]="['/heroes']">
+		Regresar
+	</button>
+	<form (ngSubmit)="save()"
+		   #forma="ngForm">
+		<div class="form-group">
+			<label for="exampleFormControlInput1">
+				Nombre
+			</label>
+			<input type="text" 
+					class="form-control" 
+					id="exampleFormControlInput1" 
+					placeholder="Nombre del heroe"
+					[(ngModel)]="heroe.nombre"
+					name="nombre"
+					required>
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlSelect1">
+				Casa
+			</label>
+			<select class="form-control" 
+					id="exampleFormControlSelect1"
+					name="casa"
+					[(ngModel)]="heroe.casa"
+					required>
+				<option>Marvel</option>
+				<option>DC</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlTextarea1">
+				Bio
+			</label>
+			<textarea class="form-control"
+					  id="exampleFormControlTextarea1" 
+					  rows="3"
+					  [(ngModel)]="heroe.bio"
+					  name="bio">
+			</textarea>
+		</div>
+		<button type="submit" 
+				class="btn btn-outline-primary"
+				[disabled]="!forma.valid">
+			Guardar Cambios
+		</button>
+	</form>
+	{{forma.valid}}
+</div>
