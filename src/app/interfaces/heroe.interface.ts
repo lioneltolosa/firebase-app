@@ -1,5 +1,5 @@
 export interface Heroe {
-    nombre: string;
+    name: string;
     bio: string;
     casa: string;
     key$?: string;

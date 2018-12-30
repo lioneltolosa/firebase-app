@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
 import { Heroe } from '../../interfaces/heroe.interface';
+import { HeroesService } from '../../services/heroes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroe',
@@ -10,18 +11,24 @@ import { Heroe } from '../../interfaces/heroe.interface';
 export class HeroeComponent implements OnInit {
 
   heroe: Heroe = {
-    nombre: '',
+    name: '',
     bio: '',
     casa: 'Marvel'
   };
 
-  constructor() { }
+  constructor(private heroesService: HeroesService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   save() {
     console.log(this.heroe);
-  }
 
+    this.heroesService.nuevoHeroe (this.heroe)
+      .subscribe( data => {
+        this.router.navigate(['/heroe', data['name'] ]);
+      },
+      error => console.log(error));
+    }
 }
